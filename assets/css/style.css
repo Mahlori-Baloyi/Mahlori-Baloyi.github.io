@@ -31,16 +31,19 @@ h6 {
 }
 
 a {
-  color: #1e1e1e;
-  text-decoration: none;
-  transition: all 0.5s ease-in-out;
+  color: #1a73e8; /* Default link color */
+  text-decoration: none; /* Optional: removes underline */
 }
 
 a:hover {
-  color: #0078ff;
-  text-decoration: none;
-  transition: all 0.5s ease-in-out;
+  color: #d93025; /* Link color when hovered */
+  text-decoration: underline; /* Optional: adds underline on hover */
 }
+
+a:visited {
+  color: #6a1b9a; /* Color for visited links */
+}
+
 
 .p-r {
   position: relative;
@@ -939,7 +942,7 @@ main {
 }
 
 .work-content .w-like {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   color: #0078ff;
   float: right;
 }
