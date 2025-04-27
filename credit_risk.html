@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictive Modeling for Marketing Campaign Optimization at iFood</title>
+
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/icons/1.png" rel="icon">
+  <link href="assets/img/icons/1.png" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/credit_risk.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+ 
+  <!-- Template Main CSS File -->
+ 
+
+<body>
+
+  <!-- ======= Header ======= -->
+  
+ <header id="header" class="fixed-top" style="background:rgba(0, 0, 0, 0.9)">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">Mahlori</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto " href="index.html#hero">Home</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+
+
+
+  <main id="main">
+
+  <div class="container1">
+      
+      <h2><img src="assets/img/icons/brain-svgrepo-com.svg"> Project Title & Summary</h2>
+      <p><strong>Title:</strong> Credit Risk Analysis — Predicting Loan Defaults with Machine Learning</p>
+      <p>A machine learning project designed to identify borrowers at high risk of default using 
+        demographic and financial data. This solution enables smarter, risk-aware lending decisions 
+        through predictive modeling and Power BI dashboards for business insight.</p>
+
+      <h2><img src="assets/img/icons/folder-svgrepo-com.svg"></i> Files</h2>
+      <ul>
+        <li><a href="https://youtu.be/huUBURjrZIs">Presentation Video</a></li>
+        <li><a href="https://docs.google.com/presentation/d/10gS1ja86z983V0Dv67JUFet5VoSZafOBMI1BgCB999U/edit#slide=id.p1">Google Slides(.pptx)</a></li>
+        <li><a href="https://github.com/Mahlori-Baloyi/Credit-Risk">Code on GitHub</a></li>
+      </ul>
+
+      <h2><img src="assets/img/icons/magnifying-glass-tilted-right-svgrepo-com.svg"> Project Objectives</h2>
+      <p>To build a classification model that can predict whether a borrower will default, 
+        and to create a business-friendly dashboard that highlights high-risk customer segments.
+      </p>
+
+      <h2><img src="assets/img/icons/data.png"> Data Overview</h2>
+      <ul>
+          <li><strong>Source:</strong> <a href="https://www.kaggle.com/datasets/laotse/credit-risk-dataset">Kaggle</a> loan default dataset.</li>
+          <li><strong>Size:</strong> 32,581 rows, 12 columns.</li>
+          <li><strong>Features:</strong> person_age, person_income, person_home_ownership, person_emp_length, loan_intent, loan_grade, loan_amnt, loan_int_rate, loan_status, loan_percent_income, cb_person_default_on_file, cb_preson_cred_hist_length.</li>
+          <li><strong>Key columns:</strong> Include person_age, person_income, loan_amnt, loan_int_rate, loan_intent, and the target: loan_status.</li>
+      </ul>
+
+      <h2><img src="assets/img/icons/broom.png"> Data Cleaning & Exploration</h2>
+      <ul>
+          <li>Detected and capped outliers in age and emp_length</li>
+          <li>Filled missing emp_length with median</li>
+          <li>Used regression to impute missing loan_int_rate</li>
+          <li>Detected and dropped duplicates</li>
+          <li>Class imbalance observed in loan_status (many more paid than defaults)</li>
+      </ul>
+
+      <h2><img src="assets/img/icons/gears.png"> Feature Engineering</h2>
+      <ul>
+          <li>One-hot encoding on categorical variables (e.g., loan_intent, education).</li>
+          <li>Feature selection using LightGBM feature importance.</li>
+          <li>Created dummy variables to support tree-based models.</li>
+      </ul>
+
+      <h2>Feature Relationships.</h2>
+      <ul>
+        <li>Used Sklearn - Mutual information feature.</li>
+        <li>No strong linear relationship between target and other features.</li>
+        <ul>
+            <li><strong>person_income</strong>: (score = 0.114) Most informative! Income plays a big role in predicting default. The higher the income, the lower the chance of default. </li>
+            <li><strong>loan_int_rate</strong>: (score = 0.084)	High interest rates correlate with increased risk. Possibly reflects lenders charging more to risky individuals.</li>
+            <li><strong>loan_percent_income</strong>: (score = 0.080) Borrowing a high % of one’s income = higher risk. </li>
+        </ul>
+      </ul>
+
+      <h2>Target Distribution</h2>
+      <p>Class imbalance detected</p>
+      <img class="img2" src="assets/img/Credit_risk/Loan status Dis.PNG">
+
+
+      <h2><img src="assets/img/icons/modeling.png"> Modeling</h2>
+      <ul>
+        <li>Model Used: LightGBM Classifier</li>
+        <li>Why LightGBM? Handles imbalance, fast training, interpretable</li>
+        <li>Techniques Applied</li>
+            <ul>
+                <li>class_weight='balanced'</li>
+                <li>Cross-validation (5-fold)</li>
+                <li>Precision-recall threshold tuning to favor recall over precision</li>
+            </ul>
+      </ul>
+      <p>Goal: Minimize financial risk by catching as many defaulters as possible, even if some paying customers are flagged.</p>
+      
+      <h2><img src="assets/img/icons/results.png"> Results</h2>
+      <table>
+          <thead>
+              <tr>
+                  <th>Metric</th>
+                  <th>Accuracy</th>
+                  <th>AUC-ROC</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Train Set</th>
+                  <td>93.50%</td>
+                  <td>97.42%</td>
+              </tr>
+              <tr>
+                  <th>Test Set</th>
+                  <td>89.14%</td>
+                  <td>94.54%</td>
+              </tr>
+          </tbody>
+      </table>
+      <ul>
+        <li>Good generalization — minor overfit, acceptable</li>
+        <li>Threshold tuning improved recall with controlled precision</li>
+      </ul>
+
+      <h2><img src="assets/img/icons/push pin.png"> Business Insights Dashboard</h2>
+      <p>Built in Power BI for the marketing team</p>
+
+      <h6>Key Metrics</h6>
+      <ul>
+	    <li>Total Customers</li> 
+		<li>Dominant Age Group</li>
+		<li>Most Common Loan Intent</li>
+		<li>Average Income</li>
+		<li>Overall Default Rate</li>
+		<li>Average Loan Percent Income</li>
+      </ul>
+      <h6>Behavior & Affordability Visuals.</h6>
+		<ul>
+          <li>
+              Age Group vs Loan Percent Income (Mean): Highlights 
+              which age groups are taking loans that are a larger share of their income.
+          </li>
+		  <li>Loan Amount by Age Group: Shows how much each group borrows. While not directly about risk, it gives insight into demand — 
+              useful for sizing up campaign efforts.
+          </li>
+		  <li>Avg Loan Percent Income by Loan Status: Illustrates how the repayment burden (as a % of income) correlates with defaults — 
+              useful for messaging or prequalification criteria.
+          </li>
+          <li>Amount by Loan Intent: Reflects which loan purposes require higher funding. Again, helps guide the focus of targeted campaigns 
+            (e.g. more budget toward high-intent categories).
+          </li> 
+	      <li>Default Rate by Income Bracket: Tells us how income levels relate to default risk. If lower income = higher default, 
+            marketing might want to focus on more financially secure brackets — like how luxury brands target exclusive audiences.
+         </li>	
+        </ul>
+        <i class="bi bi-link-45deg"></i><a href="https://drive.google.com/file/d/1jeNAoUzEpCmxWR_fCHaQI8k7d58siFlc/view?usp=sharing">Marketing Dashboard Snippet</a>
+
+      <h2><img src="assets/img/icons/Key-Success-Knowledge-School-Learning-512.webp"> Key Learnings</h2>
+      <ul>
+        <li>Handling real-world data messiness (missing values, outliers, imbalance)</li>
+        <li>Precision vs Recall trade-off in business contexts</li>
+        <li>End-to-end ML pipeline, from data cleaning to dashboard delivery</li>
+      </ul>
+
+      <h2><img src="assets/img/icons/conclusion.png"> Conclusion</h2>
+      <ul>
+        <li>This project demonstrates the integration of machine learning and business intelligence to not only predict risk but inform business.</li>
+        <li>The model performs well, the dashboard tells a story, and both are tools to empower decision-makers.</li>
+      </ul>
+</main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="copyright-box">
+            <p class="copyright">&copy; Copyright <strong>Mahlori</strong>. All Rights Reserved</p>
+            <div class="credits">
+              <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+            -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+
+</html>
