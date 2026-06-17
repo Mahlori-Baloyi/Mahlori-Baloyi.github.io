@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rabbit</title>
 
-  <title>mboweni accountants website</title>
+
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -18,22 +19,16 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
+  <link href="assets/css/credit_risk.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: DevFolio
-  * Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+ 
+  <!-- Template Main CSS File -->
+ 
 
 <body>
 
   <!-- ======= Header ======= -->
+  
  <header id="header" class="fixed-top" style="background:rgba(0, 0, 0, 0.9)">
     <div class="container d-flex align-items-center justify-content-between">
 
@@ -49,71 +44,161 @@
       </nav><!-- .navbar -->
 
     </div>
-  </header><!-- End Header -->
+  </header>
 
- 
+
 
   <main id="main">
 
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-      <div class="container">
+  <div class="container1">
+      
+      <h1><img src="assets/img/icons/brain-svgrepo-com.svg"> <strong>Rabbit</strong></h1>
+      <h1> Financial Data Processing & Reporting System</h1>
+    <h2>Executive Summary</h2>
+      <p>
+          A web-based financial data processing system developed for an accounting practice 
+          to reduce manual transaction processing and improve reporting efficiency.
 
-  		 <div class="row justify-content-center">
-    		 <div class="col-lg-5">
-    		 	<h2>Mboweni Accontants.</h2>
-    		 </div>
+        The system extracts transaction data from bank statements, converts unstructured financial records
+         into a structured database, and provides reporting and filtering capabilities that support accounting and 
+         financial analysis workflows.
 
-          <div class="col-lg-9">
-            <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
+        The solution was designed to address the time-consuming and error-prone process of manually capturing 
+        transaction data from bank statements.</p>
 
-                <div class="swiper-slide">
-                  <img src="assets/img/Mboweni/1.png" alt="">
-                </div>
+      <h2><img src="assets/img/icons/folder-svgrepo-com.svg"></i> Business Problem</h2>
+      <h5>Business Challenge</h5>
+      <p>Accountants received bank statements in PDF format.</p>
+      <p>Staff had to:</p>
+      <ul>
+        <strong>1. </strong> Open statements<br>
+        <strong>2. </strong>Read transactions manually<br>
+        <strong>3. </strong>Capture information into spreadsheets<br>
+        <strong>4. </strong>Categorize transactions<br>
+        <strong>5. </strong>Prepare reports<br>
+      </ul>
 
-                <div class="swiper-slide">
-                  <img src="assets/img/Mboweni/2.png" alt="">
-                </div>
+      <p>Challenges:</p>
+      <ul>
+        <li>Time-consuming</li>
+        <li>Repetitive</li>
+        <li>Human error risk</li>
+        <li>Difficult to scale</li>
+      </ul>
 
-                <div class="swiper-slide">
-                  <img src="assets/img/Mboweni/3.png" alt="">
-                </div>
+      <h2><img src="assets/img/icons/magnifying-glass-tilted-right-svgrepo-com.svg"> Requirements Analysis</h2>
+      <p><strong>Stakeholder Requirements</strong></p>
+      <p>The accounting firm required:
+      </p>
+        <ul>
+          <li>Secure document uploads</li>
+          <li>Automated transaction extraction</li>
+          <li>Transaction categorization</li>
+          <li>Search and filtering capabilities</li>
+          <li>Reporting functionality</li>
+          <li>User-specific access controls</li>
+        </ul>
 
-              </div>
-              <a href="https://mboweniaccountants.co.za/">Link to website.</a>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
+      <h2><img src="assets/img/icons/data.png"> System Workflow</h2>
+      <ul>
+          <li><strong>Source:</strong> <a href="https://www.kaggle.com/datasets/laotse/credit-risk-dataset">Kaggle</a> loan default dataset.</li>
+          <li><strong>Size:</strong> 32,581 rows, 12 columns.</li>
+          <li><strong>Features:</strong> person_age, person_income, person_home_ownership, person_emp_length, loan_intent, loan_grade, loan_amnt, loan_int_rate, loan_status, loan_percent_income, cb_person_default_on_file, cb_preson_cred_hist_length.</li>
+          <li><strong>Key columns:</strong> Include person_age, person_income, loan_amnt, loan_int_rate, loan_intent, and the target: loan_status.</li>
+      </ul>
+
+      <h2><img src="assets/img/icons/broom.png"> Technical Implementation </h2>
+      <h5>Technologies Used</strong></h5>
+      <ul>
+        <li>Django</li>
+        <li>PostgreSQL</li>
+        <li>Python</li>
+        <li>Bootstrap</li>
+        <li>Authentication & Authorization</li>
+      </ul>
+
+      <h5>Key Components</strong></h5>
+      <h7>Document Processing</h7>
+       <ul>
+        <li>Django</li>
+        <li>PostgreSQL</li>
+        <li>Python</li>
+        </ul>
+
+      <h7>Database Layer</h7>
+       <ul>
+        <li>PDF upload</li>
+        <li>Data extraction</li>
+        <li>Auto Categorization</li>
+        <li>Validation</li>
+        </ul>
+
+      <h7>Reporting Layer</h7>
+       <ul>
+        <li>Filtering</li>
+        <li>Transaction views</li>
+        <li>Report generation</li>
+        </ul>
+
+
+
+
+
+
+
+      <h2><img src="assets/img/icons/gears.png"> Security & Compliance</h2>
+      <h5>Security Considerations</h5>
+      <ul>
+        <li>User authentication</li>
+        <li>User-specific data access</li>
+        <li>Secure document handling</li>
+        <li>POPIA-conscious development approach</li>
+      </ul>
+
+      <h2>Challenges & Solutions.</h2>
+      <p><strong>Challenge: Bank Statement Variations</strong></p>
+      <p>Different banks generate statements using different formats.</p>
 
       
-		      <div class="col-lg-9">
-		        <h3><strong>Project Overview:</strong></h3>
-				<p>I collaborated with Mboweni Accountants to create a dynamic online presence that effectively showcases their services and expertise in the field of accounting. The project involved designing a prototype in Figma to present the initial concepts to the client, followed by the development of a fully functional website using HTML, CSS, and JavaScript.</p>
+      <p><strong>Solution</strong></p>
+      <p>Implemented pattern recognition using regular expressions to support extraction from targeted statement formats.</p>
 
-				<h3><strong>Client's Goals:</strong></h3>
-				<p>Mboweni Accountants aimed to establish an online platform that would highlight their range of services while maintaining a professional and formal aesthetic. They sought a website that would resonate with potential clients in the financial sector and effectively communicate the benefits of working with their firm.</p>
+      <p><strong>Challenge: Limited Training Data</strong></p>
+      <p>Client data could not be used during development.</p>
 
-				<h3><strong>Design Process:</strong></h3>
+      
+      <p><strong>Solution</strong></p>
+      <p>Created a development dataset using personal statements while maintaining confidentiality.</p>
 
-				<p>After gathering the client's requirements, I crafted a simple yet elegant design concept in black and white, evoking a sense of formality and professionalism. The minimalist approach ensured that the focus remained on the content and services offered by Mboweni Accountants. Throughout the design process, I considered both user expectations and industry standards to create a website that would meet the needs of both the client and their target audience.</p>
+      <p><strong>Challenge: Categorizing unseen data</strong></p>
+      <p>Unseen data could not be categorized</p>
 
-				<h3><strong>Technologies Used:</strong></h3>
-				<p>I utilized HTML, CSS, and JavaScript to develop the website, ensuring optimal performance and functionality across various devices and screen sizes. I used Figma to create the designs and prototype. The website was hosted on GitHub and configured with a custom domain name provided by Afrihost to enhance brand identity and credibility.</p>
+      <p><strong>Solution</strong></p>
+      <p>Unknow transactions set to general transactions and allow users to manually categorize same descriptions in bulk.</p>
 
-				<h3><strong>Key Features:</strong></h3>
-				<p>The website features a clean and intuitive layout, prominently displaying Mboweni Accountants' services and benefits. Special attention was given to responsiveness, ensuring seamless user experience on devices ranging from smartphones to laptops. Additionally, interactive elements were incorporated to engage visitors and encourage exploration of the site's content.</p>
 
-				<h3><strong>Outcome:</strong></h3>
-				<p>The completed website successfully achieved the client's objectives, providing a professional online platform to showcase Mboweni Accountants' expertise and attract potential clients. Since its launch, the website has received positive feedback for its simplicity, clarity, and user-friendly interface.</p>
-			</div>
+      
+      <h2>Results & Impact</h2>
+      <p><strong>Outcomes</strong></p>
+      <ul>
+        <li>Reduced manual transaction capture effort</li>
+        <li>Improved accessibility of financial records</li>
+        <li>Enabled faster transaction search and retrieval</li>
+        <li>Created a foundation for future automated categorisation</li>
+        <li>Improved consistency of financial reporting workflows</li>
+        </ul>
 
-        </div>
 
-      </div>
-    </section><!-- End Portfolio Details Section -->
-
-  </main><!-- End #main -->
+      <h2><img src="assets/img/icons/modeling.png"> Future Roadmap</h2>
+      <p><strong>Planned Enhancements</strong></p>
+      <ul>
+        <li>Support for multiple bank formats</li>
+        <li>Automated categorisation models</li>
+        <li>Financial dashboards</li>
+        <li>SaaS deployment</li>
+      </ul>
+      
+</main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer>
@@ -149,7 +234,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
 </body>
+
 
 </html>
