@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictive Modeling for Marketing Campaign Optimization at iFood</title>
+
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/icons/1.png" rel="icon">
+  <link href="assets/img/icons/1.png" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/ifoods.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+ 
+
+<body>
+
+  <!-- ======= Header ======= -->
+  
+ <header id="header" class="fixed-top" style="background:rgba(0, 0, 0, 0.9)">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">Mahlori</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto " href="index.html#hero">Home</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+
+
+
+  <main id="main">
+
+  <div class="container1">
+      <h1>Enhancing Marketing Campaign Effectiveness with Predictive Modeling </h1>
+
+      <h2>Project Title and Overview</h2>
+      <p><strong>Title:</strong> Predictive Modeling for Marketing Campaign Optimization at iFood</p>
+      <p><strong>Overview:</strong></p>
+      <ul>
+          <li>Developed a predictive model to identify iFood customers most likely to respond to marketing campaigns, aiming to enhance targeting efficiency and increase profitability.</li>
+          <li><strong>Context:</strong> iFood, a leading food delivery service in Brazil, needed a data-driven solution to improve its marketing strategies and maintain a competitive edge.</li>
+      </ul>
+
+      <h2>Problem Statement</h2>
+      <p><strong>Business Problem:</strong></p>
+      <p>iFood faced challenges in optimizing its marketing campaigns to maximize response rates and return on investment (ROI). Inefficient targeting led to wasted resources and missed revenue opportunities.</p>
+      <p><strong>Technical Problem:</strong></p>
+      <p>The task was to build a robust predictive model that accurately forecasts customer responses to marketing campaigns, balancing precision (correctly identifying non-responders) and recall (correctly identifying responders).</p>
+
+      <h2>Data and Features</h2>
+      <p><strong>Dataset Description:</strong></p>
+      <ul>
+          <li><strong>Source:</strong> Historical data from six previous marketing campaigns.</li>
+          <li><strong>Size:</strong> 2,240 customer records.</li>
+          <li><strong>Features:</strong> Demographics (e.g., Age, Income), Purchasing behavior (e.g., spending on wine, meat), Campaign interactions (e.g., responses to previous campaigns).</li>
+      </ul>
+      <p><strong>Feature Engineering:</strong></p>
+      <ul>
+          <li><strong>Grouping Variables:</strong> Age and income were grouped to reduce the number of unique values, simplifying the analysis.</li>
+          <li><strong>New Features:</strong> Created interaction terms like combining the number of children in a household, and purchase behaviors.</li>
+          <li><strong>Handling Missing Data:</strong> Applied imputation techniques for missing values and removed outliers to improve data quality.</li>
+      </ul>
+
+      <h2>Modeling Approach</h2>
+      <p><strong>Model Selection:</strong></p>
+      <ul>
+          <li>Explored multiple models including <strong>Random Forest</strong> and <strong>Gradient Boosting</strong>.</li>
+          <li><strong>Final Model:</strong> Chose Random Forest for its robustness and ability to handle complex interactions among features and avoiding overfitting small data.</li>
+      </ul>
+      <p><strong>Hyperparameter Tuning:</strong></p>
+      <p>Used <strong>GridSearchCV</strong> to optimize hyperparameters like the number of trees, depth of trees, and minimum samples per split.</p>
+      <p><strong>Decision Threshold Adjustment:</strong></p>
+      <p>Adjusted the decision threshold to improve recall for the responder class, ensuring more potential customers were identified.</p>
+
+      <h2>Model Performance</h2>
+      <p><strong>Initial Performance:</strong></p>
+      <table>
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Predicted: No</th>
+                  <th>Predicted: Yes</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Actual: No</th>
+                  <td>534</td>
+                  <td>14</td>
+              </tr>
+              <tr>
+                  <th>Actual: Yes</th>
+                  <td>53</td>
+                  <td>45</td>
+              </tr>
+          </tbody>
+      </table>
+      <p><strong>Metrics:</strong></p>
+      <ul>
+          <li><strong>Class 0 (Non-Responders):</strong></li>
+          <ul>
+              <li>Precision: 0.91</li>
+              <li>Recall: 0.97</li>
+              <li>F1-Score: 0.94</li>
+          </ul>
+          <li><strong>Class 1 (Responders):</strong></li>
+          <ul>
+              <li>Precision: 0.76</li>
+              <li>Recall: 0.46</li>
+              <li>F1-Score: 0.57</li>
+          </ul>
+          <li><strong>Overall Accuracy:</strong> 90%</li>
+      </ul>
+      <p><strong>Issue:</strong> High accuracy but low recall for responders, leading to many missed potential customers.</p>
+
+      <p><strong>Improved Performance:</strong></p>
+      <table>
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Predicted: No</th>
+                  <th>Predicted: Yes</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Actual: No</th>
+                  <td>463</td>
+                  <td>85</td>
+              </tr>
+              <tr>
+                  <th>Actual: Yes</th>
+                  <td>26</td>
+                  <td>72</td>
+              </tr>
+          </tbody>
+      </table>
+      <p><strong>Metrics:</strong></p>
+      <ul>
+          <li><strong>Class 0 (Non-Responders):</strong></li>
+          <ul>
+              <li>Precision: 0.95</li>
+              <li>Recall: 0.84</li>
+              <li>F1-Score: 0.89</li>
+          </ul>
+          <li><strong>Class 1 (Responders):</strong></li>
+          <ul>
+              <li>Precision: 0.46</li>
+              <li>Recall: 0.73</li>
+              <li>F1-Score: 0.56</li>
+          </ul>
+          <li><strong>Overall Accuracy:</strong> 83%</li>
+      </ul>
+      <p><strong>Outcome:</strong> Improved recall for responders, better balance between identifying potential customers and avoiding false positives.</p>
+
+      <h2>Business Impact</h2>
+      <p><strong>Quantitative Results:</strong> Estimated that improved targeting could increase marketing campaign profitability by up to [X]% through more efficient allocation of resources.</p>
+      <p><strong>Actionable Insights:</strong> Key customer segments with high responsiveness were identified, such as [specific age and income groups]. Suggested focusing future campaigns on these high-likelihood segments to maximize ROI.</p>
+
+      <h2>Technical Skills Demonstrated</h2>
+      <ul>
+          <li><strong>Programming Languages:</strong> Python (scikit-learn, pandas, numpy)</li>
+          <li><strong>Data Preprocessing:</strong> Imputation, outlier detection, feature scaling.</li>
+          <li><strong>Modeling Techniques:</strong> Random Forest, Gradient Boosting, ensemble methods.</li>
+          <li><strong>Evaluation Metrics:</strong> Precision, recall, F1-score, accuracy, AUC.</li>
+          <li><strong>Tools:</strong> Jupyter Notebooks, Git for version control, data visualization (matplotlib, seaborn).</li>
+      </ul>
+
+      <h2>Visuals and Documentation</h2>
+      <p><strong>Graphs and Charts:</strong></p>
+
+      <div class="container">
+        <h1>Predictive Modeling for Marketing Campaign Optimization at iFood</h1>
+
+        <h2>Feature Importance</h2>
+        <img src="assets/img/Ifood details_files/Visuals/Feature Importance.png" alt="Feature Importance">
+
+        <h2>ROC Curve</h2>
+        <img src="assets/img/Ifood details_files/Visuals/roc_curve.png" alt="ROC Curve">
+
+        <h2>ROC Curve Adjusted</h2>
+        <img src="assets/img/Ifood details_files/Visuals/Receiver Operating Characteristic (Adjusted Threshold).png" alt="ROC Curve">
+
+        <h2>Confusion Matrix Comparison</h2>
+        <img src="assets/img/Ifood details_files/Visuals/Adjusted Threshold Model.png" alt="Confusion Matrix Comparison">
+
+        <h2>Precision-Recall Curve Comparison</h2>
+        <img src="assets/img/Ifood details_files/Visuals/Precision-Recall Curve Comparison.png" alt="Precision-Recall Curve">
+        <img src="assets/img/Ifood details_files/Visuals/Recall Curve Comparison.png" alt="Precision-Recall Curve">
+        
+        
+    </div>
+
+    <h2>Feature Engineering Process</h2>
+    <pre><code class="language-python">
+    # Handle missing values
+    X.fillna(X.mean(), inplace=True)
+    
+    # Create a new feature: Total number of children in the household
+    X['Total_Children'] = X['Kidhome'] + X['Teenhome']
+    
+    # Grouping income into bins
+    income_bins = [df['Income'].min(), 35178, 67480, df['Income'].max()]
+    income_labels = ['Low', 'Medium', 'High']
+    df['Income Quintile'] = pd.cut(df['Income'], bins=income_bins, labels=income_labels)
+    
+    #Interaction correlation
+    df['Income_AcceptedCmp3'] = df['Income'] * df['AcceptedCmp3']
+    df['Income_AcceptedCmp4'] = df['Income'] * df['AcceptedCmp4']
+    df['Income_AcceptedCmp5'] = df['Income'] * df['AcceptedCmp5']
+    df['Income_AcceptedCmp1'] = df['Income'] * df['AcceptedCmp1']
+    df['Income_MntMeatProducts'] = df['Income'] * df['MntMeatProducts']
+    df['Age_Total_Children'] = df['Income'] * df['Total_Children']
+
+
+    # Encoding categorical variables
+    X = pd.get_dummies(X, drop_first=True)
+   
+    </code></pre>
+    <h2>Model Training</h2>
+    <pre><code class="language-python">
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.model_selection import train_test_split
+
+    # Split the data
+    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
+
+    # Train the Random Forest model
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=20,
+        min_samples_split=5,
+        min_samples_leaf=1,
+        bootstrap=True,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+
+    # Predict on test data
+    y_pred = model.predict(X_test)
+    </code></pre>
+
+    <h2>Hyperparameter Tuning</h2>
+
+    <pre><code class="language-python">
+    from sklearn.model_selection import GridSearchCV
+
+    # Define the parameter grid
+    param_grid = {
+        'n_estimators': [100, 200, 300],
+        'max_depth': [10, 20, 30],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'bootstrap': [True, False]
+    }
+
+    # Initialize the grid search
+    grid_search = GridSearchCV(
+        estimator=model,
+        param_grid=param_grid,
+        cv=5,  # 5-fold cross-validation
+        n_jobs=-1,  # Use all available cores
+        verbose=2
+    )
+
+    # Fit the grid search to the data
+    grid_search.fit(X_train, y_train)
+
+    # Best hyperparameters
+    best_params = grid_search.best_params_
+    print("Best Hyperparameters:", best_params)
+    </code></pre>
+
+    
+      <h2>Link to Full Project</h2>
+      <p><strong>GitHub Repository:</strong> <a href="https://github.com/Mahlori-Baloyi/ifoods">Link to GitHub Repository</a> (Provide the actual link to your repository).</p>
+      
+      <h2>Conclusion and Learnings</h2>
+      <p><strong>Project Summary:</strong> Successfully developed a predictive model that significantly enhanced iFood's marketing campaign targeting strategy.</p>
+      <p><strong>Key Learnings:</strong> Gained experience in balancing precision and recall to meet specific business objectives. Enhanced understanding of feature engineering and the impact of different modeling techniques on real-world problems.</p>
+  </div>
+
+</main><!-- End #main -->
+</body>
+
+
+</html>
