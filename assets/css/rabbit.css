@@ -1,0 +1,112 @@
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container */
+.container1 {
+    max-width: 800px; /* Limits max width for comfortable reading */
+    width: 90%;      /* Shrinks dynamically on mobile screens */
+    margin: 100px auto 40px auto; /* Top margin provides space under fixed header */
+    background-color: #fff;
+    padding: 20px 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Typography & Section Headings */
+h1, h2, h3 {
+    color: #333;
+}
+
+h1 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0073e6;
+    padding-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.3em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0073e6;
+    padding-bottom: 5px;
+}
+
+
+
+.text-center-container {
+    text-align: center;
+}
+
+/* Content Elements */
+ul, ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border: 3px;
+}
+
+.img2.center-image {
+    display: block;
+    max-width: 110px; /* Adjust size as needed */
+    width: 50%;
+    height: auto;
+    margin: 0 auto 20px auto; /* Centers horizontally and adds bottom gap */
+}
+
+/* Responsive PDF Embed Container */
+.pdf-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 65%; /* Keeps 16:9 aspect ratio dynamically */
+    margin-top: 25px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.pdf-container object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
