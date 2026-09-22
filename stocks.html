@@ -6,12 +6,20 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Mahlori Baloyi Portfolio</title>
+
+  <style>
+  .image-container img {
+    width: 850px;
+    height: 350px;
+  }
+</style>
+
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/icons/1.png" rel="icon">
+  <link href="assets/img//icons/1.png" rel="apple-touch-icon">
 
   
   <!-- Vendor CSS Files -->
@@ -34,100 +42,165 @@
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
   <!-- ======= Header ======= -->
-  <header id="header">
-    <div class="d-flex flex-column">
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top" style="background:rgba(0, 0, 0, 0.9)">
+    <div class="container d-flex align-items-center justify-content-between">
 
-      <div class="profile">
-        <img src="assets/img/Image2.jpeg" alt="" class="img-fluid rounded-box">
-        <h1 class="text-light"><a href="index.html#portfolio">Mahlori Baloyi</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="https://twitter.com/Mahlori77896031" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=100087203859889" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="https://www.linkedin.com/in/mahlori-baloyi-7680b317a/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        
-        </div>
-      </div>
+      <h1 class="logo"><a href="index.html">Mahlori</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      <nav id="navbar" class="nav-menu navbar">
+      <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="index.html#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="index.html#skills" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Skills</span></a></li>
-          <li><a href="index.html#resume" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Resume</span></a></li>
-          <li><a href="index.html#portfolio" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Portfolio</span></a></li>
-          <li><a href="index.html#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+          <li><a class="nav-link scrollto " href="index.html#hero">Home</a></li>
         </ul>
-      </nav><!-- .nav-menu -->
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
     </div>
   </header><!-- End Header -->
 
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Portfolio Details</li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs -->
+ <!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="stocks" class="portfolio-details">
       <div class="container">
-        <div class="portfolio-description">
-          <h2>Stocks Market Analysis</h2>
-          <p>
-            Stock analysis is a method for investors and traders to make buying and selling decisions. 
-                    By studying and evaluating past and current data, 
-                    investors and traders attempt to gain an edge in the markets by making informed decisions.
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <h1>Stock Market Analysis Report.</h1>
+          </div>
+
+          <div class="col-lg-9">
+
+          <h2>Introduction</h2>
+          <p>In this report, we analyze and compare the performance of Apple, Microsoft, Netflix, and Google stocks over the past three months. The analysis includes examining trends, calculating moving averages, assessing volatility, and conducting correlation analysis to gain insights into the stock market dynamics.
           </p>
-        </div>
-        <div class="row gy-4">
 
-          <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper">
-              <div class="swiper-wrapper align-items-center">
+          <h2>Data Collection and Preprocessing.</h2>
+          
+            <p>We collected historical stock price data from <a href="https://www.kaggle.com/datasets/amirmotefaker/stock-market-analysis-data">Kaggle.</a> and preprocessed the data to handle
+                missing values and ensure data integrity.
+            </p>
+          <!-- ======= Stock Price Movements ======= -->
+          <h2>Stock Price Movements.</h2>
+           <p>We visualized the stock price movements for each company, identifying trends and patterns over the three-month period.
+            </p>
 
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/Stocks/newplot.png" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/Stocks/nflx.png" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/Stocks/Correlation.jpg" alt="">
-                </div>
-
-              </div>
-              <div class="swiper-pagination"></div>
+          <h4>Apple Stocks Movements.</h4>
+          <ul>
+            <div class="displayed-image">
+              <img src="assets/img/Stocks/apple.png" width="850" height="350" alt="">
             </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="portfolio-info">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Exploratory Data Analysis</li>
-                <li><strong>Client</strong>: Myself</li>
-                <li><strong>Project date</strong>: July 2023</li>
-                <li><strong>Project URL</strong>: <a href="https://github.com/Mahlori-Baloyi/Stocks_Market_Analysis" target="_blank">github</a></li>
-              </ul>
+            <ul>
+              <li>Apple: Bullish continual pattern observed with consistent price increases.</li>
+            </ul>
+          </ul>
+          
+          <h4>Microsoft Stocks Movements.</h4>
+          <ul>
+            <div class="swiper-slide">
+              <img src="assets/img/Stocks/microsft.png" width="850" height="350" alt="">
             </div>
-            
-          </div>
+            <ul>
+            <li>Microsoft: Overall increasing trend with a brief period of decline at the beginning of the period.</li>
+          </ul>
+          </ul>
+          
+          <h4>Netflix Stocks Movements.</h4>
+          <ul>
+            <div class="swiper-slide">
+              <img src="assets/img/Stocks/netflix.png" width="850" height="350" alt="">
+            </div>
+            <ul>
+              <li> Netflix: Initial decline followed by a sudden increase and subsequent decrease.</li>
+            </ul>
+          </ul>
+          
+          <h4>Google Stocks Movements.</h4>
+          <ul>
+            <div class="swiper-slide">
+              <img src="assets/img/Stocks/google.png" width="850" height="350" alt="">
+            </div>
+            <ul>
+              <li>Google: Decreasing trend with a cup and handle pattern observed.</li>
+            </ul>
+          </ul>
+          
+              
+      <!-- ======= Moving averages ======= -->
 
+        <h2>Moving Averages</h2>
+        <p>Moving averages are commonly used in time series analysis to smooth out the data and identify trends or patterns. Moving averages (MA10, MA20, MA30) were calculated to smooth out short-term fluctuations and identify long-term trends in stock prices. The results were visualized to provide insights into the trend direction.</p>
+
+        <select id="company-select">
+          <option value="apple_m">Apple</option>
+          <option value="microsoft_m">Microsoft</option>
+          <option value="netflix_m">Netflix</option>
+          <option value="google_m">Google</option>
+        </select>
+
+        <div class="image-container">
+          <img id="displayed-image" src="assets/img/Stocks/microsoft.png" alt="Stock Moving Averages">
         </div>
+        
+
+        <h2>Volatility Analysis.</h2>
+        
+        <p>Volatility is the rate at which the price of a stock increases or decreases over a particular period. Higher stock price volatility often means higher risk and helps an investor to estimate the fluctuations that may happen in the future. We computed daily returns and analyzed the volatility of each stock. The findings indicated low volatility for the top tech companies, suggesting lower risk associated with investing in these stocks.
+
+        </p>
+
+        <select id="volatility-select">
+          <option value="apple">Apple</option>
+          <option value="microsoft">Microsoft</option>
+          <option value="netflix">Netflix</option>
+          <option value="google">Google</option>
+        </select>
+        <div>
+          <img id="volatility-image" src="">
+              
+        </div>
+
+        
+          <h4>Daily Volatility</h4>
+          <ul>
+            <li>AAPL 1.42%</li>
+            <li>GOOG 2.07%</li>
+            <li>MSFT 1.79%</li>
+            <li>NFLX 2.25%</li>
+          
+           </ul>
+        
+
+        <h2>Correlation Analysis.</h2>
+        
+        <p>Correlation analysis was conducted to examine the relationships between the daily returns of different stocks. Positive associations were observed, with Netflix and Google showing a modest correlation and Apple and Google exhibiting a strong correlation.
+
+        </p>
+        <ul>
+          <div class="swiper-slide">
+            <img src="assets/img/Stocks/Correlation.jpg" width="550" height="450" alt=''>
+          </div>
+        </ul>
+
+
+
+
+        <h2>Conclusion.</h2>
+        <p>The analysis reveals valuable insights into the stock market performance of leading IT companies. Despite individual fluctuations, the stocks demonstrate overall positive trends and favorable correlations, indicating potential investment opportunities..
+        </p>
+        
+       
 
       </div>
+    </div>
+  </div>
+  
+    
+
     </section><!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
