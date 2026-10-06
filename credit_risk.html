@@ -1,237 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Predictive Modeling for Marketing Campaign Optimization at iFood</title>
-
-
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/icons/1.png" rel="icon">
-  <link href="assets/img/icons/1.png" rel="apple-touch-icon">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/css/credit_risk.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
- 
-  <!-- Template Main CSS File -->
- 
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credit Risk Case Study: Where a Lender Loses Money It Didn't Have To | Mahlori Baloyi</title>
+<meta name="description" content="A decision-support case study: finding the drivers of loan default, testing a model against simple rules, and recommending operational changes.">
+<link rel="stylesheet" href="assets/vendor/glightbox/css/glightbox.min.css">
+<style>
+:root{--bg:#f3f5f7;--ink:#14202b;--mute:#52606d;--line:#d5dce3;--acc:#0f6b6b;--hi:#b4531a;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#10171e;--ink:#e6ebf0;--mute:#9aa8b5;--line:#2a3743;--acc:#5cc2bd;--hi:#e8925c;--card:#18222b}}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Charter,Georgia,serif}
+main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+h1,h2,h3,table,.meta,nav{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.15;margin:.3em 0 .4em}
+h2{font-size:1.45rem;margin:2.4em 0 .5em;padding-top:.8em;border-top:2px solid var(--ink)}
+h3{font-size:1.05rem;margin:1.6em 0 .2em;color:var(--acc)}
+p{margin:.6em 0}
+nav a,.files a{color:var(--acc)}
+.meta{color:var(--mute);font-size:.95rem}
+.so{border-left:3px solid var(--hi);padding:.1em 0 .1em 14px;margin:.6em 0}
+.wrap{overflow-x:auto;margin:1em 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;background:var(--card)}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-weight:600;border-bottom:2px solid var(--ink)}
+.bar{display:flex;height:64px;margin:1em 0 .3em;font:600 .85rem system-ui,sans-serif;color:#fff}
+.bar div{display:flex;flex-direction:column;justify-content:center;padding:0 10px;overflow:hidden;white-space:nowrap}
+.t1{background:#0f6b6b}.t2{background:#8a6d1c}.t3{background:#a63d2f}
+.fig{margin:1.2em 0;padding:12px;background:var(--card);border:1px solid var(--line)}
+.fig img{max-width:100%;height:auto;display:block}
+.credit-risk-lightbox{display:block;cursor:zoom-in}
+details{margin:1em 0}summary{cursor:pointer;font-family:system-ui,sans-serif;font-weight:600}
+:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+</style>
+</head>
 <body>
-
-  <!-- ======= Header ======= -->
-  
- <header id="header" class="fixed-top" style="background:rgba(0, 0, 0, 0.9)">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="index.html">Mahlori</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto " href="index.html#hero">Home</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header>
+<main>
+<nav><a href="index.html">Mahlori Baloyi</a></nav>
+<p class="meta" style="margin-top:28px">Case study · Data/Decision Analytics · Public Kaggle credit data, treated as a lender's loan history</p>
+<h1>Where is a lender losing money it didn't have to?</h1>
+<p>A lender hands over its loan history and asks one thing: how do we stop losing money on loans that could have been avoided? I investigated the data to identify where default concentrates, tested whether simple lending rules were sufficient, and evaluated whether a predictive model could improve the decision. I then translated the findings into operational recommendations.</p>
+<p class="files">  <a href="https://github.com/Mahlori-Baloyi/Credit-Risk">Code on GitHub</a></p>
 
 
 
-  <main id="main">
+<h2>Part 1. The evidence and the leads</h2>
+<h3>The data, and what I did to it</h3>
+<p>The dataset holds 32,581 loans with 12 attributes covering borrower profile, loan details and repayment outcome. I checked it as I would a client's data before drawing any conclusion. After cleaning, 32,411 loans remained.</p>
 
-  <div class="container1">
-      
-      <h2><img src="assets/img/icons/brain-svgrepo-com.svg"> Project Title & Summary</h2>
-      <p><strong>Title:</strong> Credit Risk Analysis — Predicting Loan Defaults with Machine Learning</p>
-      <p>A machine learning project designed to identify borrowers at high risk of default using 
-        demographic and financial data. This solution enables smarter, risk-aware lending decisions 
-        through predictive modeling and Power BI dashboards for business insight.</p>
+<p>The underlying public dataset does not specify a currency. For presentation purposes, all monetary values in this case study are expressed in R as an illustrative convention and should not be interpreted as actual lender losses or South African rand observations from the source data.</p>
+<div class="wrap"><table>
+<tr><th>Issue</th><th>Decision</th><th>Reason</th></tr>
+<tr><td>Impossible values: ages up to 144, employment of 123 years</td><td>Dropped the rows</td><td>These are entry errors. Capping would keep a row we know is wrong.</td></tr>
+<tr><td>An income of 6,000,000 on the age-144 record</td><td>Dropped with it</td><td>Same corrupted record; it would distort every average.</td></tr>
+<tr><td>Duplicate rows</td><td>Removed</td><td>A duplicate counts one borrower twice. In total, 165 rows were removed.</td></tr>
+<tr><td>895 missing employment lengths (2.7%)</td><td>Filled with the median</td><td>Few rows, and the median ignores extremes.</td></tr>
+<tr><td>3,116 missing interest rates (9.6%)</td><td>Estimated from the other loan attributes</td><td>Rates follow loan grade and loan profile closely.</td></tr>
+</table></div>
 
-      <h2><img src="assets/img/icons/folder-svgrepo-com.svg"></i> Files</h2>
-      <ul>
-        <li><a href="https://youtu.be/huUBURjrZIs">Presentation Video</a></li>
-        <li><a href="https://docs.google.com/presentation/d/10gS1ja86z983V0Dv67JUFet5VoSZafOBMI1BgCB999U/edit#slide=id.p1">Google Slides(.pptx)</a></li>
-        <li><a href="https://github.com/Mahlori-Baloyi/Credit-Risk">Code on GitHub</a></li>
-      </ul>
+<h3>Lead 1. The size of the problem</h3>
+<p><strong>21.87%</strong> of loans defaulted. They account for R76.97M of the R310.94M lent (<strong>24.8%</strong>). Defaulted loans were also larger on average, with an average loan amount of R10,857, compared with R9,240 for loans that did not default.</p>
 
-      <h2><img src="assets/img/icons/magnifying-glass-tilted-right-svgrepo-com.svg"> Project Objectives</h2>
-      <p>To build a classification model that can predict whether a borrower will default, 
-        and to create a business-friendly dashboard that highlights high-risk customer segments.
-      </p>
+<h3>Lead 2. An affordability cliff</h3>
+<p>Default sits between 12% and 22% while a loan is under 30% of income, then jumps to about 70%. The cliff appears in every income band: for the lowest earners default goes from 30% to 82%, and for the next band from 21% to 69%. About 3,800 loans (12% of the book) sit above the line and produce roughly <strong>38% of all defaults</strong>.</p>
+<p class="so"><strong>So what:</strong> a loan-to-income check at application is cheap and easy to explain. It should trigger a review, not an automatic decline, since about 30% of those borrowers still repay.</p>
 
-      <h2><img src="assets/img/icons/data.png"> Data Overview</h2>
-      <ul>
-          <li><strong>Source:</strong> <a href="https://www.kaggle.com/datasets/laotse/credit-risk-dataset">Kaggle</a> loan default dataset.</li>
-          <li><strong>Size:</strong> 32,581 rows, 12 columns.</li>
-          <li><strong>Features:</strong> person_age, person_income, person_home_ownership, person_emp_length, loan_intent, loan_grade, loan_amnt, loan_int_rate, loan_status, loan_percent_income, cb_person_default_on_file, cb_preson_cred_hist_length.</li>
-          <li><strong>Key columns:</strong> Include person_age, person_income, loan_amnt, loan_int_rate, loan_intent, and the target: loan_status.</li>
-      </ul>
+<h3>Lead 3. Income, with a floor effect</h3>
+<p>Default falls steadily as income rises: 45.6% under R30k, 28.0%, 19.6%, 15.7%, then 9.4% above R80k, where it stops improving. Borrowers under R45k are 36% of loans and about 57% of defaults. Income and affordability each carry their own signal and they compound: the same book contains loans that default at 7.8% (high income, low ratio) and at 82.4% (low income, high ratio).</p>
+<p class="so"><strong>So what:</strong> extra scrutiny belongs at the low end of the income scale. Above about R80k, more income buys little extra safety.</p>
 
-      <h2><img src="assets/img/icons/broom.png"> Data Cleaning & Exploration</h2>
-      <ul>
-          <li>Detected and capped outliers in age and emp_length</li>
-          <li>Filled missing emp_length with median</li>
-          <li>Used regression to impute missing loan_int_rate</li>
-          <li>Detected and dropped duplicates</li>
-          <li>Class imbalance observed in loan_status (many more paid than defaults)</li>
-      </ul>
+<h3>Lead 4. The lender's own grade works</h3>
+<p>Default climbs from 10% at grade A to 59% at D and 98% at G. Grades D to G are 15% of loans and about 42% of defaults.</p>
+<p class="so"><strong>So what:</strong> the existing grading does real work, so the question is what it misses. Grade is set by the lender partly on perceived risk, so it confirms the lender's judgement more than it reveals new risk.</p>
 
-      <h2><img src="assets/img/icons/gears.png"> Feature Engineering</h2>
-      <ul>
-          <li>One-hot encoding on categorical variables (e.g., loan_intent, education).</li>
-          <li>Feature selection using LightGBM feature importance.</li>
-          <li>Created dummy variables to support tree-based models.</li>
-      </ul>
+<h3>Lead 5. Housing and purpose</h3>
+<p>Renters default at 31.6%, against 12.6% for mortgage holders and 7.5% for owners. By purpose, debt consolidation (28.7%), medical (26.8%) and home improvement (26.2%) default far more than venture (14.9%) or education (17.3%).</p>
+<p class="so"><strong>So what:</strong> people consolidating debt are often already stretched, so affordability checks matter most there. Housing status is useful context for reviewers, but it needs a fairness check before it goes into any rule.</p>
 
-      <h2>Feature Relationships.</h2>
-      <ul>
-        <li>Used Sklearn - Mutual information feature.</li>
-        <li>No strong linear relationship between target and other features.</li>
-        <ul>
-            <li><strong>person_income</strong>: (score = 0.114) Most informative! Income plays a big role in predicting default. The higher the income, the lower the chance of default. </li>
-            <li><strong>loan_int_rate</strong>: (score = 0.084)	High interest rates correlate with increased risk. Possibly reflects lenders charging more to risky individuals.</li>
-            <li><strong>loan_percent_income</strong>: (score = 0.080) Borrowing a high % of one’s income = higher risk. </li>
-        </ul>
-      </ul>
+<h3>Two leads that didn't hold up</h3>
+<p>Default stayed between 20% and 23% in every age band, and across credit history lengths until the longest band, which holds only 101 loans. Neither separates good borrowers from bad.</p>
+<p class="so"><strong>So what:</strong> the lender gains nothing from using age, which also avoids a compliance problem.</p>
 
-      <h2>Target Distribution</h2>
-      <p>Class imbalance detected</p>
-      <img class="img2" src="assets/img/Credit_risk/Loan status Dis.PNG">
+<h3>What Part 1 told me</h3>
+<p>Every lead is real but partial, and the strong ones overlap. A lender could stack rules, but someone has to decide the weights and how they combine. A simple two-rule filter (loan above 30% of income, or grade D to G) catches 71% of defaulters while flagging a quarter of applicants. The remaining question was whether a model could find more of the rest without flagging many more good customers.</p>
 
+<h2>Part 2. Can a model beat the rules?</h2>
+<p>A supervised model learns the weighting from past borrowers who did and did not default, so nobody has to set it by hand. I trained a LightGBM classifier on 80% of the loans, with class weights because defaulters are only 22% of the book, and tested it against the rule filter on the held-out 20%: 6,483 loans, 1,418 of them defaults.</p>
 
-      <h2><img src="assets/img/icons/modeling.png"> Modeling</h2>
-      <ul>
-        <li>Model Used: LightGBM Classifier</li>
-        <li>Why LightGBM? Handles imbalance, fast training, interpretable</li>
-        <li>Techniques Applied</li>
-            <ul>
-                <li>class_weight='balanced'</li>
-                <li>Cross-validation (5-fold)</li>
-                <li>Precision-recall threshold tuning to favor recall over precision</li>
-            </ul>
-      </ul>
-      <p>Goal: Minimize financial risk by catching as many defaulters as possible, even if some paying customers are flagged.</p>
-      
-      <h2><img src="assets/img/icons/results.png"> Results</h2>
-      <table>
-          <thead>
-              <tr>
-                  <th>Metric</th>
-                  <th>Accuracy</th>
-                  <th>AUC-ROC</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <th>Train Set</th>
-                  <td>93.50%</td>
-                  <td>97.42%</td>
-              </tr>
-              <tr>
-                  <th>Test Set</th>
-                  <td>89.14%</td>
-                  <td>94.54%</td>
-              </tr>
-          </tbody>
-      </table>
-      <ul>
-        <li>Good generalization — minor overfit, acceptable</li>
-        <li>Threshold tuning improved recall with controlled precision</li>
-      </ul>
+<div class="wrap"><table>
+<tr><th></th><th>Rule filter</th><th>Model (threshold 0.40)</th></tr>
+<tr><td>Applications flagged</td><td>1,608 (24.8%)</td><td>1,720 (26.5%)</td></tr>
+<tr><td>Defaulters caught</td><td>1,010</td><td>1,200</td></tr>
+<tr><td>Defaulters missed</td><td>408</td><td>218</td></tr>
+<tr><td>Good customers flagged</td><td>598</td><td>520</td></tr>
+<tr><td>Recall</td><td>71.2%</td><td>84.6%</td></tr>
+<tr><td>Precision</td><td>62.8%</td><td>69.8%</td></tr>
+<tr><td>Expected cost*</td><td>about R3.27M</td><td>about R1.95M</td></tr>
+</table></div>
+<p>The review workload is about the same, yet the model finds <strong>190 more defaulters</strong> and wrongly flags <strong>78 fewer good customers</strong>. The rules are not weak: they catch 71% with no model at all. The model adds the last 13 points, the borrowers who pass each simple test but are risky in combination. AUC was 0.946, and accuracy at this threshold was 88.6%.</p>
 
-      <h2><img src="assets/img/icons/push pin.png"> Business Insights Dashboard</h2>
-      <p>Built in Power BI for the marketing team</p>
+<h3>What the model relies on</h3>
+<p>Grouped by importance (gain): affordability and income about <strong>43%</strong>, the lender's own pricing (interest rate and grade) about <strong>31%</strong>, housing 11%, purpose 9%. Age (1.9%) and credit history length (0.4%) barely register, which confirms the two dead ends.</p>
+<p class="so"><strong>So what:</strong> default here is driven mainly by the borrower's capacity to repay. Neither age nor history length is worth building a rule around.</p>
 
-      <h6>Key Metrics</h6>
-      <ul>
-	    <li>Total Customers</li> 
-		<li>Dominant Age Group</li>
-		<li>Most Common Loan Intent</li>
-		<li>Average Income</li>
-		<li>Overall Default Rate</li>
-		<li>Average Loan Percent Income</li>
-      </ul>
-      <h6>Behavior & Affordability Visuals.</h6>
-		<ul>
-          <li>
-              Age Group vs Loan Percent Income (Mean): Highlights 
-              which age groups are taking loans that are a larger share of their income.
-          </li>
-		  <li>Loan Amount by Age Group: Shows how much each group borrows. While not directly about risk, it gives insight into demand — 
-              useful for sizing up campaign efforts.
-          </li>
-		  <li>Avg Loan Percent Income by Loan Status: Illustrates how the repayment burden (as a % of income) correlates with defaults — 
-              useful for messaging or prequalification criteria.
-          </li>
-          <li>Amount by Loan Intent: Reflects which loan purposes require higher funding. Again, helps guide the focus of targeted campaigns 
-            (e.g. more budget toward high-intent categories).
-          </li> 
-	      <li>Default Rate by Income Bracket: Tells us how income levels relate to default risk. If lower income = higher default, 
-            marketing might want to focus on more financially secure brackets — like how luxury brands target exclusive audiences.
-         </li>	
-        </ul>
-        <i class="bi bi-link-45deg"></i><a href="https://drive.google.com/file/d/1jeNAoUzEpCmxWR_fCHaQI8k7d58siFlc/view?usp=sharing">Marketing Dashboard Snippet</a>
+<h3>The decision: where to draw the line</h3>
+<p>For the model comparison, I used a 0.40 threshold to compare performance at a review workload similar to the simple rule filter. I then treated the threshold as a business decision and tested alternative thresholds against assumed costs. To put numbers on it, I assumed a missed defaulter costs 60% of an average defaulted loan (about R6,514) and a wrongly flagged good customer costs one year of interest on an average loan (about R1,016). On those assumptions, screening nothing costs about R9.24M, the rule filter R3.27M and the model R1.95M: <strong>79% below screening nothing and about 40% below the rules</strong>.</p>
+<p>The cost-minimising threshold depends on those assumptions. Across nine scenarios it ranged from 0.25 to 0.50:</p>
+<div class="wrap"><table>
+<tr><th>Share of a defaulted loan lost</th><th>Interest forgone 8%</th><th>11%</th><th>14%</th></tr>
+<tr><td>40%</td><td>0.35</td><td>0.50</td><td>0.50</td></tr>
+<tr><td>60%</td><td>0.25</td><td>0.35</td><td>0.45</td></tr>
+<tr><td>80%</td><td>0.25</td><td>0.30</td><td>0.35</td></tr>
+</table></div>
+<p>The more a lender loses per default, the lower the threshold should be. The more it earns on each good loan, the higher. So the threshold is a business setting, not a model property, and it also sets the review workload: at 0.25 about 46% of applicants are flagged, at 0.50 about 23%.</p>
 
-      <h2><img src="assets/img/icons/Key-Success-Knowledge-School-Learning-512.webp"> Key Learnings</h2>
-      <ul>
-        <li>Handling real-world data messiness (missing values, outliers, imbalance)</li>
-        <li>Precision vs Recall trade-off in business contexts</li>
-        <li>End-to-end ML pipeline, from data cleaning to dashboard delivery</li>
-      </ul>
+<h3>Stress test: what if the lender's pricing isn't available?</h3>
+<p>Interest rate and grade are set after the lender has assessed the borrower, so a model scoring a fresh application wouldn't have them. I removed both and retrained.</p>
+<div class="wrap"><table>
+<tr><th></th><th>Full model</th><th>Without rate and grade</th><th>Affordability-only rule</th></tr>
+<tr><td>Recall</td><td>84.6%</td><td>83.1%</td><td>38.2%</td></tr>
+<tr><td>Precision</td><td>69.8%</td><td>61.9%</td><td>68.9%</td></tr>
+<tr><td>Good customers flagged</td><td>520</td><td>725</td><td>245</td></tr>
+<tr><td>AUC</td><td>0.946</td><td>0.929</td><td>not applicable</td></tr>
+<tr><td>Expected cost*</td><td>about R1.95M</td><td>about R2.30M</td><td>about R5.96M</td></tr>
+</table></div>
+<p>Recall barely moved. The cost was more false alarms: 205 more good customers flagged. The model can be constructed using information available at application time, with a heavier review queue, and it catches more than twice as many defaulters as a rule a lender could apply on day one.</p>
 
-      <h2><img src="assets/img/icons/conclusion.png"> Conclusion</h2>
-      <ul>
-        <li>This project demonstrates the integration of machine learning and business intelligence to not only predict risk but inform business.</li>
-        <li>The model performs well, the dashboard tells a story, and both are tools to empower decision-makers.</li>
-      </ul>
-</main><!-- End #main -->
+<h2>Recommended operational changes</h2>
+<p>Under the central 60% loss assumption and 11% interest-forgone assumption, 0.35 is the cost-minimising threshold. I use that threshold for the illustrative operating tiers below.</p>
+<div class="bar" role="img" aria-label="Tiers: 66% fast track, 16% manual review, 19% high risk">
+<div class="t1" style="width:65.6%">Fast track 66%<span>4.4% default</span></div>
+<div class="t2" style="width:15.8%">Review 16%<span>19.6%</span></div>
+<div class="t3" style="width:18.7%">High risk 19%<span>85.2%</span></div>
+</div>
+<p class="meta">Share of applicants in each tier, with the default rate inside it (6,483 test loans).</p>
+<ol>
+<li><strong>Tier the application process.</strong> Two-thirds of applicants move to fast approval at a 4.4% default rate. Analysts review the 16% in the middle. The 19% scored as high risk, of whom 85% default, get collateral, a guarantor, or a decline.</li>
+<li><strong>Make affordability the first gate.</strong> Default jumps from about 20% to about 70% past 30% of income. On its own the check catches only 38% of defaulters, so it works as a trigger for review, not a complete policy.</li>
+<li><strong>Review lending to grades D to G.</strong> They are 15% of loans and about 42% of defaults.</li>
+<li><strong>Use the model as decision support.</strong> A person makes the final call.</li>
+<li><strong>Retrain on the lender's own data, set the threshold from its own recovery rate and margins, and monitor drift.</strong></li>
+</ol>
 
-  <!-- ======= Footer ======= -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="copyright-box">
-            <p class="copyright">&copy; Copyright <strong>Mahlori</strong>. All Rights Reserved</p>
-            <div class="credits">
-              <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-            -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End  Footer -->
+<h2>Limits of this case</h2>
+<ul>
+<li>The data is a public simulation, and a lender's own patterns may differ.</li>
+<li>Threshold selection and final tier construction should be repeated on a validation set or through cross-validation, followed by a genuinely untouched test set.</li>
+<li>Cost figures are my assumptions. The data has no recovery or currency information.</li>
+<li>The operating tiers were derived from the application-time model and evaluated on the held-out test set.</li>
+<li>Age and housing status may provide useful context for reviewers, but both require a fairness and compliance review before being used in any lending rule.</li>
+</ul>
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<h2>If this were a real engagement</h2>
+<p>I would validate on the lender's own history, agree the cost assumptions with its credit team, and integrate the tiers into the application workflow.</p>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<div class="fig"><!-- Replace src with your Power BI screenshot, framed for the lender scenario -->
+<a class="credit-risk-lightbox" href="assets/img/Credit_risk/dashbord.PNG" aria-label="Open the Power BI dashboard image at full size">
+<img src="assets/img/Credit_risk/dashbord.PNG" alt="Power BI dashboard showing default rate by income band, loan purpose and affordability">
+</a>
+<p class="meta">Power BI dashboard for the lender's credit team: default rate by affordability, income, purpose and housing.</p></div>
+<h2>Disclaimer</h2>
+<p>This case study demonstrates how I use data, statistical analysis and machine learning to investigate business problems and support operational decisions.
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+Rather than treating the model as the end product, I use it as part of an investigation: identify where risk concentrates, test the assumptions behind potential interventions, evaluate whether a more sophisticated approach adds value, and translate the evidence into practical changes to the decision process.</p>
+
+<details><summary>Method notes</summary>
+<p>Python, pandas, scikit-learn, LightGBM, Power BI. Stratified 80/20 split, class_weight set to balanced, features one-hot encoded, importance measured by gain and grouped back to the original columns. Threshold sweeps from 0.20 to 0.80. Mutual information was used for early exploration only.</p></details>
+
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script>GLightbox({selector: '.credit-risk-lightbox'});</script>
+</main>
 </body>
-
-
 </html>
