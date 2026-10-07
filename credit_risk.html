@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Credit Risk Case Study: Where a Lender Loses Money It Didn't Have To | Mahlori Baloyi</title>
 <meta name="description" content="A decision-support case study: finding the drivers of loan default, testing a model against simple rules, and recommending operational changes.">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="assets/vendor/glightbox/css/glightbox.min.css">
 <style>
 :root{--bg:#f3f5f7;--ink:#14202b;--mute:#52606d;--line:#d5dce3;--acc:#0f6b6b;--hi:#b4531a;--card:#fff}
@@ -12,7 +13,7 @@
 *{box-sizing:border-box}
 html{padding-top:env(safe-area-inset-top,0)}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Charter,Georgia,serif}
-main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+main{max-width:760px;margin:0 auto;padding:88px 20px 64px}
 h1,h2,h3,table,.meta,nav{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 h1{font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.15;margin:.3em 0 .4em}
 h2{font-size:1.45rem;margin:2.4em 0 .5em;padding-top:.8em;border-top:2px solid var(--ink)}
@@ -31,15 +32,40 @@ th{font-weight:600;border-bottom:2px solid var(--ink)}
 .fig{margin:1.2em 0;padding:12px;background:var(--card);border:1px solid var(--line)}
 .fig img{max-width:100%;height:auto;display:block}
 .credit-risk-lightbox{display:block;cursor:zoom-in}
+#header{position:fixed;inset:0 0 auto;z-index:1000;padding:12px 0;background:rgba(0,0,0,.9)}
+.header-inner{max-width:1140px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+#header .logo{margin:0;padding:0;font:600 28px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:1px}
+#header .logo a,#navbar a{color:#fff;text-decoration:none}
+#navbar ul{display:flex;align-items:center;gap:30px;margin:0;padding:0;list-style:none}
+#navbar a{position:relative;font:600 16px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.4px;text-transform:uppercase}
+#navbar a:after{position:absolute;right:0;bottom:-7px;left:0;height:2px;background:#fff;content:"";transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+#navbar a:hover:after,#navbar a:focus-visible:after{transform:scaleX(.8)}
+.mobile-nav-toggle{display:none;color:#fff;font-size:28px;line-height:1;cursor:pointer}
 details{margin:1em 0}summary{cursor:pointer;font-family:system-ui,sans-serif;font-weight:600}
 :focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+@media(max-width:991px){
+	.mobile-nav-toggle{display:block}
+	#navbar ul{display:none}
+	#navbar.navbar-mobile{position:fixed;inset:0;background:rgba(78,78,78,.9)}
+	#navbar.navbar-mobile .mobile-nav-toggle{position:absolute;top:15px;right:20px;z-index:1}
+	#navbar.navbar-mobile ul{display:block;position:absolute;inset:55px 15px 15px;padding:10px 0;background:#fff;overflow-y:auto}
+	#navbar.navbar-mobile a{display:block;padding:10px 20px;color:#4e4e4e}
+	#navbar.navbar-mobile a:after{display:none}
+}
 </style>
 </head>
 <body>
+<header id="header">
+<div class="header-inner">
+<nav id="navbar">
+<ul><li><a href="index.html#hero">Home</a></li></ul>
+<i class="bi bi-list mobile-nav-toggle" role="button" tabindex="0" aria-label="Open navigation" aria-expanded="false"></i>
+</nav>
+</div>
+</header>
 <main>
-<nav><a href="index.html">Mahlori Baloyi</a></nav>
-<p class="meta" style="margin-top:28px">Case study · Data/Decision Analytics · Public Kaggle credit data, treated as a lender's loan history</p>
-<h1>Where is a lender losing money it didn't have to?</h1>
+<p class="meta">Case study · Data/Decision Analytics · Public Kaggle credit data, treated as a lender's loan history</p>
+<h1>Credit Risk Analysis - Where is a lender losing money it didn't have to?</h1>
 <p>A lender hands over its loan history and asks one thing: how do we stop losing money on loans that could have been avoided? I investigated the data to identify where default concentrates, tested whether simple lending rules were sufficient, and evaluated whether a predictive model could improve the decision. I then translated the findings into operational recommendations.</p>
 <p class="files">  <a href="https://github.com/Mahlori-Baloyi/Credit-Risk">Code on GitHub</a></p>
 
@@ -170,6 +196,24 @@ Rather than treating the model as the end product, I use it as part of an invest
 
 <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script>GLightbox({selector: '.credit-risk-lightbox'});</script>
+<script>
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const navbar = document.querySelector('#navbar');
+const toggleMobileNav = () => {
+	const isOpen = navbar.classList.toggle('navbar-mobile');
+	mobileNavToggle.classList.toggle('bi-list', !isOpen);
+	mobileNavToggle.classList.toggle('bi-x', isOpen);
+	mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+	mobileNavToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+};
+mobileNavToggle.addEventListener('click', toggleMobileNav);
+mobileNavToggle.addEventListener('keydown', event => {
+	if (event.key === 'Enter' || event.key === ' ') {
+		event.preventDefault();
+		toggleMobileNav();
+	}
+});
+</script>
 </main>
 </body>
 </html>
