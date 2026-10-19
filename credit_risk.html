@@ -38,6 +38,7 @@ footer.site-footer{margin-top:4rem;padding:1.5rem 0;border-top:1px solid var(--l
 #header{position:fixed;inset:0 0 auto;z-index:1000;padding:12px 0;background:rgba(0,0,0,.9)}
 .header-inner{max-width:1140px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
 #header .logo{margin:0;padding:0;font:600 28px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:1px}
+#header .logo a{color:#fff;text-decoration:none}
 #header .logo a,#navbar a{color:#fff;text-decoration:none}
 #navbar ul{display:flex;align-items:center;gap:30px;margin:0;padding:0;list-style:none}
 #navbar a{position:relative;font:600 16px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.4px;text-transform:uppercase}
@@ -60,8 +61,16 @@ details{margin:1em 0}summary{cursor:pointer;font-family:system-ui,sans-serif;fon
 <body>
 <header id="header">
 <div class="header-inner">
+<h1 class="logo"><a href="index.html">Mahlori</a></h1>
 <nav id="navbar">
-<ul><li><a href="index.html#hero">Home</a></li></ul>
+<ul>
+<li><a href="index.html#hero">Home</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#skills">Skills</a></li>
+<li><a href="index.html#tools">Tools</a></li>
+<li><a href="index.html#portfolio">Portfolio</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
 <i class="bi bi-list mobile-nav-toggle" role="button" tabindex="0" aria-label="Open navigation" aria-expanded="false"></i>
 </nav>
 </div>
@@ -199,24 +208,7 @@ Rather than treating the model as the end product, I use it as part of an invest
 
 <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script>GLightbox({selector: '.credit-risk-lightbox'});</script>
-<script>
-const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-const navbar = document.querySelector('#navbar');
-const toggleMobileNav = () => {
-	const isOpen = navbar.classList.toggle('navbar-mobile');
-	mobileNavToggle.classList.toggle('bi-list', !isOpen);
-	mobileNavToggle.classList.toggle('bi-x', isOpen);
-	mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
-	mobileNavToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-};
-mobileNavToggle.addEventListener('click', toggleMobileNav);
-mobileNavToggle.addEventListener('keydown', event => {
-	if (event.key === 'Enter' || event.key === ' ') {
-		event.preventDefault();
-		toggleMobileNav();
-	}
-});
-</script>
+<script src="assets/js/main.js"></script>
 </main>
 <footer class="site-footer">
 <div class="container"><p>&copy; Mahlori Baloyi. All rights reserved.</p></div>

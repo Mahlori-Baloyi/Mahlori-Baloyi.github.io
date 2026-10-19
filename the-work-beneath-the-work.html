@@ -29,6 +29,8 @@ a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 #header{position:fixed;inset:0 0 auto;z-index:1000;padding:12px 0;background:rgba(0,0,0,.9)}
 .header-inner{max-width:1140px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+#header .logo{margin:0;padding:0;font:600 28px/1.2 var(--sans);letter-spacing:1px}
+#header .logo a{color:#fff;text-decoration:none}
 #navbar ul{display:flex;align-items:center;gap:30px;margin:0;padding:0;list-style:none}
 #navbar a{position:relative;font:600 16px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.4px;text-transform:uppercase;color:#fff;text-decoration:none}
 #navbar a:after{position:absolute;right:0;bottom:-7px;left:0;height:2px;background:#fff;content:"";transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
@@ -104,8 +106,16 @@ footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
 <body>
 <header id="header">
 <div class="header-inner">
+<h1 class="logo"><a href="index.html">Mahlori</a></h1>
 <nav id="navbar">
-<ul><li><a href="index.html#hero">Home</a></li></ul>
+<ul>
+<li><a href="index.html#hero">Home</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#skills">Skills</a></li>
+<li><a href="index.html#tools">Tools</a></li>
+<li><a href="index.html#portfolio">Portfolio</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
 <i class="bi bi-list mobile-nav-toggle" role="button" tabindex="0" aria-label="Open navigation" aria-expanded="false"></i>
 </nav>
 </div>
@@ -258,27 +268,4 @@ footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
 </footer>
 
 </main>
-<script>
-const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-const navbar = document.querySelector('#navbar');
-const toggleMobileNav = () => {
-  const isOpen = navbar.classList.toggle('navbar-mobile');
-  mobileNavToggle.classList.toggle('bi-list', !isOpen);
-  mobileNavToggle.classList.toggle('bi-x', isOpen);
-  mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
-  mobileNavToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-};
-mobileNavToggle.addEventListener('click', toggleMobileNav);
-mobileNavToggle.addEventListener('keydown', event => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    toggleMobileNav();
-  }
-});
-</script>
-
-<footer class="site-footer">
-<div class="container"><p>&copy; Mahlori Baloyi. All rights reserved.</p></div>
-</footer>
-</body>
-</html>
+<script src="assets/js/main.js"></script>

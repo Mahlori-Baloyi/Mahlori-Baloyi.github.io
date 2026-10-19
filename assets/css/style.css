@@ -67,6 +67,7 @@ ul{padding-left:1.2rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
 .card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line)}
 .card>a img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.card>a img.preview-fit{object-fit:contain}
 .card>div{display:flex;flex-direction:column;flex:1;padding:1.2rem}
 .card p{margin:0 0 .8rem}
 .tags{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-wrap:wrap;gap:6px;font-size:.8rem}

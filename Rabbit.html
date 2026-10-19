@@ -1,88 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rabbit - Case Study</title>
-
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/icons/1.png" rel="icon">
-  <link href="assets/img/icons/1.png" rel="apple-touch-icon">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  
-  <!-- Template & Page Custom CSS -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/rabbit.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rabbit: Bank Statement to Cashbook | Mahlori Baloyi</title>
+<meta name="description" content="Case study: the decisions behind a system that turns PDF and scanned bank statements from four South African banks into clean, auditable transaction data, Excel output and a cashbook.">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+main{max-width:760px;margin:0 auto;padding:88px 20px 64px}
+h1{font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.15;margin:.3em 0 .4em}
+h2{font-size:1.45rem;margin:2.4em 0 .5em;padding-top:.8em;border-top:2px solid var(--ink)}
+h3{font-size:1.05rem;margin:1.6em 0 .2em;color:var(--acc)}
+p{margin:.6em 0}
+.meta{font-family:var(--sans);color:var(--mute);font-size:.95rem}
+.lede{font-size:1.2rem;font-style:italic}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:.5rem 1.25rem;margin:1.5rem 0 0;padding-top:1.25rem;border-top:1px solid var(--line);font-size:.98rem}
+dl.facts dt{font:600 .9rem/1.65 var(--sans);color:var(--mute)}
+dl.facts dd{margin:0}
+.so{border-left:3px solid var(--hi);padding:.1em 0 .1em 14px;margin:.8em 0}
+.wrap{overflow-x:auto;margin:1em 0}
+table{border-collapse:collapse;width:100%;font:.92rem var(--sans);background:var(--card)}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{border-bottom:2px solid var(--ink)}
+.fig{margin:1.2em 0;padding:12px;background:var(--card);border:1px solid var(--line)}
+.fig img{display:block;max-width:100%;height:auto;background:#fff}
+.fig .meta{margin:.6em 0 0}
+.gallery-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;gap:12px}
+.gallery-slide{flex:0 0 100%;min-width:0;margin:0;scroll-snap-align:start;scroll-snap-stop:always}
+.gallery-slide img{width:100%;max-height:68vh;object-fit:contain}
+.gallery-slide figcaption{padding-top:.65rem}
+@media(prefers-reduced-motion:reduce){.gallery-track{scroll-behavior:auto}}
+@media(max-width:34rem){dl.facts{grid-template-columns:1fr;gap:0}dl.facts dd{margin-bottom:.7rem}}
+</style>
 </head>
-
 <body>
+<header id="header">
+<div class="header-inner">
+<h1 class="logo"><a href="index.html">Mahlori</a></h1>
+<nav id="navbar">
+<ul>
+<li><a href="index.html#hero">Home</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#skills">Skills</a></li>
+<li><a href="index.html#tools">Tools</a></li>
+<li><a href="index.html#portfolio">Portfolio</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+<i class="bi bi-list mobile-nav-toggle" role="button" tabindex="0" aria-label="Open navigation" aria-expanded="false"></i>
+</nav>
+</div>
+</header>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top" style="background: rgba(0, 0, 0, 0.9);">
-    <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="index.html">Mahlori</a></h1>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="index.html#hero">Home</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-    </div>
-  </header>
+<main>
+<p class="meta">Case study · Systems analysis · Data quality and reporting</p>
+<h1>Rabbit: getting four banks' statements into numbers you can audit</h1>
+<p class="lede">A report is only as good as the data under it. The hard part of Rabbit was not the cashbook. It was turning four banks' statements, each printed differently, into clean rows that reconcile to the bank's own balance.</p>
+<dl class="facts">
+<dt>My role</dt><dd>Analysed the workflow and requirements, designed and built the system</dd>
+<dt>Context</dt><dd>A small accounting practice serving SMEs, whose clients mostly bank with FNB</dd>
+<dt>Built with</dt><dd>Python, Django, PostgreSQL, Celery and Redis, pdfplumber, pytesseract (OCR)</dd>
+<dt>Runs on</dt><dd>Render (application) and Neon (PostgreSQL), both on free tiers</dd>
+<dt>Banks</dt><dd>FNB, plus selected statement formats from Nedbank, Capitec and Standard Bank</dd>
+<dt>Output</dt><dd>One structured transaction table, Excel data and a PDF cashbook</dd>
+<dt>Status</dt><dd>Under development</dd>
+</dl>
 
-  <!-- ======= Main Content ======= -->
-  <main id="main">
-    <div class="container1">
+<h2>1. The problem and the system</h2>
+<p>The practice receives client financial information as PDF bank statements, receipts and other records, and works in CaseWare, Excel and Microsoft Word. Bank transactions arriving as PDFs had to be copied into CaseWare by hand, and each transaction then given a sundry (an accounting classification), before any accounting work could begin. The process was repetitive and invited transcription errors. It also used time and attention that belonged to analysis and client work.</p>
+<p>I analysed the existing workflow and the stakeholder requirements, then designed Rabbit as a structured bridge between client-provided bank statements and the accounting work that follows. The accountant picks the bank, uploads a statement, and it passes through the same path every time:</p>
+<ol>
+<li>Extract the transaction records, using OCR where the statement is an image</li>
+<li>Normalise them into one structured format</li>
+<li>Validate them against the statement</li>
+<li>Categorise each transaction through sundries</li>
+<li>Calculate the cashbook</li>
+<li>Export Excel data and a PDF cashbook</li>
+</ol>
 
-      <!-- Executive Summary -->
-      <h2><strong>Executive Summary</strong></h2>  
-      <p>
-        A web-based financial data processing system developed for an accounting practice 
-        to reduce manual transaction processing and improve reporting efficiency.
-      </p>
-      <p>
-        The solution was designed to address the time-consuming and error-prone process of manually capturing 
-        transaction data from bank statements.
-      </p>
+<div class="fig"><img src="assets/img/Rabbit/c4-context.png" alt="Context diagram: an accountant sends a PDF bank statement to the Rabbit Accounting Platform and receives a PDF or Excel cashbook back">
+<p class="meta">The accountant sends in a bank statement and gets a cashbook back.</p></div>
 
-    </div>
-  </main><!-- End #main -->
+<div class="fig">
+<svg viewBox="0 0 760 220" role="img" aria-labelledby="flowT" style="display:block;width:100%;height:auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+<title id="flowT">Components of the web application, in order: authentication, project management, upload, statement processing, validation, categorisation, cashbook and export</title>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+<g color="currentColor" style="color:var(--mute)" stroke="currentColor" stroke-width="1.6" fill="none">
+<line x1="176" y1="58" x2="208" y2="58" marker-end="url(#ah)"/>
+<line x1="362" y1="58" x2="394" y2="58" marker-end="url(#ah)"/>
+<line x1="548" y1="58" x2="580" y2="58" marker-end="url(#ah)"/>
+<line x1="665" y1="86" x2="665" y2="130" marker-end="url(#ah)"/>
+<line x1="580" y1="158" x2="548" y2="158" marker-end="url(#ah)"/>
+<line x1="394" y1="158" x2="362" y2="158" marker-end="url(#ah)"/>
+<line x1="208" y1="158" x2="176" y2="158" marker-end="url(#ah)"/>
+</g>
+<g fill="var(--card)" stroke="var(--ink)" stroke-width="1.4">
+<rect x="26" y="30" width="150" height="56"/><rect x="208" y="30" width="154" height="56"/><rect x="394" y="30" width="154" height="56"/>
+<rect x="580" y="30" width="170" height="56" stroke="var(--acc)" stroke-width="2.6"/>
+<rect x="580" y="130" width="170" height="56"/><rect x="394" y="130" width="154" height="56"/><rect x="208" y="130" width="154" height="56"/><rect x="26" y="130" width="150" height="56"/>
+</g>
+<g fill="var(--ink)" font-size="14" text-anchor="middle">
+<text x="101" y="63">Authentication</text><text x="285" y="63">Project management</text><text x="471" y="63">Upload</text>
+<text x="665" y="55" font-weight="600">Statement processing</text><text x="665" y="74" font-size="11" fill="var(--mute)">bank-specific engine, OCR if scanned</text>
+<text x="665" y="163">Validation</text><text x="471" y="163">Categorisation</text><text x="285" y="163">Cashbook</text><text x="101" y="163">Export</text>
+</g>
+</svg>
+<p class="meta">Components of the web application. The accountant selects the bank at upload, and that choice decides which extraction engine runs.</p></div>
 
-  <!-- ======= Footer ======= -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="copyright-box">
-            <p class="copyright">&copy; Copyright <strong>Mahlori</strong>. All Rights Reserved</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+<h3>What the database holds</h3>
+<p>Uploaded statements are processed in memory and are not kept. Only the file name is stored, so that a repeat upload of the same file can be recognised.</p>
+<div class="wrap"><table>
+<tr><th>Table</th><th>Holds</th></tr>
+<tr><td>Users</td><td>Accounts that own projects</td></tr>
+<tr><td>Projects</td><td>The work for one client, containing its statements</td></tr>
+<tr><td>Statements</td><td>One record per uploaded statement, with its file name (not the file)</td></tr>
+<tr><td>Transactions</td><td>The extracted, normalised rows of each statement</td></tr>
+<tr><td>Categories</td><td>The sundries that transactions are grouped under</td></tr>
+<tr><td>Cashbooks</td><td>The cashbooks calculated from categorised transactions</td></tr>
+<tr><td>Audit logs</td><td>A record kept alongside the other tables</td></tr>
+</table></div>
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<h2>2. Three decisions that shaped the extraction</h2>
+<div class="wrap"><table>
+<tr><th>What broke</th><th>What I changed</th></tr>
+<tr><td><strong>Text patterns stopped scaling.</strong> I began with regular expressions and string handling. Every new statement format and exception added more patterns, and the logic became too hard to maintain.</td><td>I moved to reading each word by its position on the page. The task became working out which pieces of text belong together on the page, which reconstructs a transaction from the layout and not from the wording.</td></tr>
+<tr><td><strong>One parser could not serve four banks.</strong> The banks differ in columns, date style, amount format and where descriptions sit.</td><td>I gave each bank its own extraction engine. The accountant selects the bank before uploading, and whichever engine runs, the output is the same table (below).</td></tr>
+<tr><td><strong>Some FNB statements became scanned-style documents.</strong> pdfplumber found no text to read.</td><td>I converted each page to an image, read it with OCR, and extracted the fields with logic. I tried Google's OCR API first to prove the approach could work, then moved to pytesseract, which is what Rabbit uses now.</td></tr>
+</table></div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<h3>One table out, whatever the bank</h3>
+<div class="wrap"><table>
+<tr><th>Field</th><th>Purpose</th></tr>
+<tr><td>Date</td><td>Transaction date</td></tr>
+<tr><td>Description</td><td>Bank transaction description</td></tr>
+<tr><td>Amount</td><td>Transaction value</td></tr>
+<tr><td>Sundry</td><td>Accounting classification</td></tr>
+<tr><td>Balance</td><td>Running account balance</td></tr>
+</table></div>
+<p>FNB comes first because it is where the practice's clients bank, so FNB is the best-covered format. The other three banks work only for selected statement versions.</p>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<h3>Where the data fought back</h3>
+<div class="wrap"><table>
+<tr><th>Problem</th><th>Bank</th><th>What I did</th><th>Why</th></tr>
+<tr><td>A stamp printed across the transaction list confused text extraction</td><td>Capitec</td><td>Extracted only text matching the angle and size of statement text</td><td>The stamp differs from real transactions, so it can be filtered without touching real rows</td></tr>
+<tr><td>Amounts in inconsistent formats, such as 1.200.00, 1,200.00 and 1,200,200</td><td>Nedbank</td><td>Normalised every amount to one numeric format before storing</td><td>Mixed separators corrupt totals and the running balance</td></tr>
+<tr><td>A description printed on a second line</td><td>Standard Bank</td><td>Treated the line with the date and amount as the row, then joined the following line as its description</td><td>The date and amount mark where a transaction starts</td></tr>
+<tr><td>A value sitting slightly above the rest of its row</td><td>Several</td><td>Grouped text into rows by vertical position, so the value still lands in its row</td><td>Statements are not perfectly aligned</td></tr>
+</table></div>
+
+<h2>3. Business rules and validation</h2>
+<h3>Reading money correctly</h3>
+<p>Extracting text does not tell you what it means. FNB puts every amount in a single column and shows money out as a negative number, so the sign decides the direction. Nedbank splits the figures into separate fee, debit and balance columns. On Nedbank and newer Capitec statements the fees are not added to the transaction amount, and the statement alone does not say how a fee should be treated for accounting. I asked the stakeholder for the rules and applied them.</p>
+
+<h3>Giving FNB dates a year</h3>
+<p>FNB's date column has no year, so 15/02 on its own is not a complete date. I combined three sources:</p>
+<ul>
+<li><strong>The user:</strong> start-year and end-year fields set the financial period.</li>
+<li><strong>The document:</strong> the statement year is read once from fixed coordinates on the first page, outside the transaction loop, so it is not re-read for every row.</li>
+<li><strong>A business rule:</strong> the financial year runs from March to February. January and February take the end year, and March to December take the start year.</li>
+</ul>
+<div class="wrap"><table>
+<tr><th>Date on the statement</th><th>Financial year March 2025 to February 2026</th></tr>
+<tr><td>15/03</td><td>15 March 2025</td></tr>
+<tr><td>20/12</td><td>20 December 2025</td></tr>
+<tr><td>10/01</td><td>10 January 2026</td></tr>
+<tr><td>28/02</td><td>28 February 2026</td></tr>
+</table></div>
+<p class="meta">Illustration of the rule.</p>
+
+<h3>A deliberate trade-off: the opening balance</h3>
+<p>Finding the opening balance reliably meant new extraction logic for every bank's layout. Instead, the user enters it. That kept the system simple and still gave the running balance the starting point it needs.</p>
+
+<h3>How I checked the numbers</h3>
+<p>I added a running balance to the stored transactions, as an audit column. I compared it with the balance column printed on the bank statement, and when something was wrong I could see how far the balance moved and which row caused it. That check is how I found most of the problems above.</p>
+<p class="so">On the statements I tested, every transaction was captured, the fields held what the accounting work needs, and the closing balance matched the bank statement.</p>
+<p>A matching closing balance on its own can hide mistakes that cancel each other out, so the check also asks whether every transaction on the statement is present.</p>
+
+<h3>The Standard Bank case, step by step</h3>
+<p>Descriptions that wrapped onto a second line became rows of their own, with no date and no amount. Those rows came through as NaN and broke the running balance. Removing them fixed the balance, but it created a new problem: the wrapped text held the information that decides the transaction type. So I stopped treating the extra line as a row and attached it to the transaction above it. A row that passes validation is not always a complete transaction, and the fix is to rebuild it correctly, not to hide the error.</p>
+
+<h2>4. Deployment and trade-offs</h2>
+<p>Rabbit runs on free tiers: Render for the application and Neon for PostgreSQL. The first deployment ran into memory limits, which forced changes I would not have made on my own machine:</p>
+<ul>
+<li><strong>Lighter code:</strong> I moved imports inside the functions that need them, so heavy libraries load only when used, and split the processing into service modules.</li>
+<li><strong>Background processing:</strong> statements are extracted by a Celery worker with Redis, so a long extraction does not tie up a web request, and the screen shows progress while it runs.</li>
+<li><strong>Smaller worker settings:</strong> the default Celery settings used more memory than the free tier allows. I cut the worker's concurrency to one and ran the web server with one worker. The cost is that statements are processed one at a time, which is why one takes about five minutes.</li>
+<li><strong>Secrets out of the code:</strong> configuration and secrets moved into environment variables.</li>
+</ul>
+<p>For one accountant's workload the wait is acceptable. A paid plan with more memory would be the first change if usage grew.</p>
+
+<h2>5. Results, limitations and lessons</h2>
+<h3>Results so far</h3>
+<p>These are informal tests on single runs, not a controlled benchmark.</p>
+<div class="wrap"><table>
+<tr><th>Test</th><th>Transactions</th><th>Time in Rabbit</th></tr>
+<tr><td>Statement 1</td><td>75</td><td>about 5 minutes</td></tr>
+<tr><td>Statement 2</td><td>102</td><td>about 5 minutes</td></tr>
+</table></div>
+<p>Capturing and categorising the same work by hand takes around 20 minutes per page.</p>
+
+<div class="fig">
+<div class="gallery-track" role="region" aria-label="Rabbit application screenshots" aria-roledescription="carousel" tabindex="0">
+<figure class="gallery-slide" role="group" aria-label="1 of 12">
+<img src="assets/img/Rabbit/Log in.PNG" alt="Rabbit logo on a white background" loading="lazy">
+<figcaption class="meta">Rabbit application Log in screen.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="2 of 12">
+<img src="assets/img/Rabbit/Projects.PNG" alt="Rabbit financial projects dashboard" loading="lazy">
+<figcaption class="meta">Project dashboard.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="3 of 12">
+<img src="assets/img/Rabbit/select bank.PNG" alt="Bank selection screen with FNB, Standard Bank, Capitec, Absa and Nedbank options" loading="lazy">
+<figcaption class="meta">Choose the bank statement format.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="4 of 12">
+<img src="assets/img/Rabbit/financial period.PNG" alt="Financial period form with project name, start and end years, and opening balance" loading="lazy">
+<figcaption class="meta">Set the financial period and opening balance.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="5 of 12">
+<img src="assets/img/Rabbit/upload 1.PNG" alt="Bank statement upload screen" loading="lazy">
+<figcaption class="meta">Upload a bank statement.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="6 of 12">
+<img src="assets/img/Rabbit/upload 3.PNG" alt="Upload screen showing one selected bank statement PDF" loading="lazy">
+<figcaption class="meta">The selected statement is ready to process.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="7 of 12">
+<img src="assets/img/Rabbit/statement processing.PNG" alt="Statement processing screen with extraction progress" loading="lazy">
+<figcaption class="meta">Statement extraction runs in the background.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="8 of 12">
+<img src="assets/img/Rabbit/transactions table.PNG" alt="Transaction review table with dates, descriptions, amounts, sundries and balances" loading="lazy">
+<figcaption class="meta">Review and categorise extracted transactions.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="9 of 12">
+<img src="assets/img/Rabbit/bottom table.PNG" alt="Lower section of the transaction review page with pagination and manual transaction form" loading="lazy">
+<figcaption class="meta">The review page also supports manual entries and pagination.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="10 of 12">
+<img src="assets/img/Rabbit/account journal.PNG" alt="Account journal report with verified ledger entries" loading="lazy">
+<figcaption class="meta">Account journal report.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="11 of 12">
+<img src="assets/img/Rabbit/Cashbook.PNG" alt="Cash book report with dated transactions and debit and credit columns" loading="lazy">
+<figcaption class="meta">Cashbook report with PDF and Excel export options.</figcaption>
+</figure>
+<figure class="gallery-slide" role="group" aria-label="12 of 12">
+<img src="assets/img/Rabbit/Trial bal.PNG" alt="Trial balance report grouped by sundry with totals" loading="lazy">
+<figcaption class="meta">Trial balance grouped by sundry.</figcaption>
+</figure>
+</div>
+<p class="meta">Swipe or scroll horizontally to view the Rabbit screens.</p>
+</div>
+
+<!-- Live demo: add the link here once the demo flow (sample statement or demo login) is decided -->
+
+<h3>Current limitations</h3>
+<ul>
+<li>Rabbit is still under development.</li>
+<li>Each bank's layout needs its own extraction engine. FNB is the best covered, and the other banks work only for selected statement versions.</li>
+<li>Unrecognised transaction descriptions may need a manual sundry allocation.</li>
+<li>If a statement's table cannot be built correctly, the import currently stops with an error. The fix I am building stores the rows, flags the ones that failed, carries on with the rest, and tells the user what went wrong.</li>
+<li>Duplicates are only partly handled. Rabbit stores each statement's file name so that a repeat upload can be spotted, but I have not tested that yet.</li>
+<li>Overlapping statements are not handled. If one statement ends on 13 June and another covers 1 to 30 June, the transactions in the overlap are loaded twice. The accountant can delete a transaction by hand to correct this.</li>
+<li>The checks so far come from a small number of statements, not a large test set.</li>
+</ul>
+
+<h3>What I learned</h3>
+<p>Automating the repetitive capture was the easy part. The work that mattered was making the data trustworthy: finding why each bank's statement broke the extraction, proving the fix against the bank's own balance, and asking the business owner when the document alone could not say how a figure should be treated. Constraints shaped the design too. Free-tier memory pushed the code into lighter, smaller pieces. And I learned where to keep a person involved: Rabbit takes over transaction capture and leaves business interpretation, such as classifying an unfamiliar transaction, to the accountant.</p>
+</main>
+<script src="assets/js/main.js"></script>
+<footer class="site-footer">
+<div class="container"><p>&copy; Mahlori Baloyi. All rights reserved.</p></div>
+</footer>
 </body>
-
 </html>
