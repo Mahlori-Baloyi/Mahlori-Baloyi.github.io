@@ -89,7 +89,7 @@ details{margin:1em 0}summary{cursor:pointer;font-family:system-ui,sans-serif;fon
 <p>The underlying public dataset does not specify a currency. For presentation purposes, all monetary values in this case study are expressed in R as an illustrative convention and should not be interpreted as actual lender losses or South African rand observations from the source data.</p>
 <div class="wrap"><table>
 <tr><th>Issue</th><th>Decision</th><th>Reason</th></tr>
-<tr><td>Impossible values: ages up to 144, employment of 123 years</td><td>Dropped the rows</td><td>These are entry errors. Capping would keep a row we know is wrong.</td></tr>
+<tr><td>Impossible values: ages up to 144, employment of 123 years</td><td>Dropped the rows</td><td>These are entry errors. Capping would keep a row we know is wrong.In total, 5 rows were removed.</td></tr>
 <tr><td>An income of 6,000,000 on the age-144 record</td><td>Dropped with it</td><td>Same corrupted record; it would distort every average.</td></tr>
 <tr><td>Duplicate rows</td><td>Removed</td><td>A duplicate counts one borrower twice. In total, 165 rows were removed.</td></tr>
 <tr><td>895 missing employment lengths (2.7%)</td><td>Filled with the median</td><td>Few rows, and the median ignores extremes.</td></tr>
